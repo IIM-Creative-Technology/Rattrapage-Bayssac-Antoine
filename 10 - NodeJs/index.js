@@ -1,0 +1,40 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+let restaurants = [];
+let currentId = 0;
+
+const port = 3000;
+app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// Créer un restaurant
+app.post('/restaurant', (req, res) => {
+    if (!req.body.name || typeof req.body.name !== 'string') {
+        return res.status(400).json({ error: 'Le nom est requis et doit être une chaîne' });
+    }
+    if (!req.body.address || typeof req.body.address !== 'string') {
+        return res.status(400).json({ error: 'L\'adresse est requise et doit être une chaîne' });
+    }
+    if (!req.body.postalCode || typeof req.body.postalCode !== 'string' || !/^\d+$/.test(req.body.postalCode)) {
+        return res.status(400).json({ error: 'Le code postal est requis et doit être une chaîne contenant uniquement des chiffres' });
+    }
+    if (req.body.seatingCapacity === undefined || typeof req.body.seatingCapacity !== 'string' || !/^\d+$/.test(req.body.seatingCapacity)) {
+        return res.status(400).json({ error: 'La capacité d\'accueil est requise et doit être une chaîne contenant uniquement des chiffres' });
+    }
+
+    const newRestaurant = {
+        id: currentId++,
+        name: req.body.name,
+        address: req.body.address,
+        postalCode: req.body.postalCode,
+        seatingCapacity: req.body.seatingCapacity
+    };
+
+    restaurants.push(newRestaurant);
+    res.status(201).json(newRestaurant);
+});
