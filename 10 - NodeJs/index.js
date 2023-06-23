@@ -38,3 +38,33 @@ app.post('/restaurant', (req, res) => {
     restaurants.push(newRestaurant);
     res.status(201).json(newRestaurant);
 });
+
+// Modifier un restaurant
+app.put('/restaurant/:id', (req, res) => {
+    const restaurantId = parseInt(req.params.id);
+    const restaurant = restaurants.find(restaurant => restaurant.id === restaurantId);
+
+    if (!restaurant) {
+        return res.status(404).json({ message: 'Restaurant non trouvé' });
+    }
+
+    restaurant.name = req.body.name || restaurant.name;
+    restaurant.address = req.body.address || restaurant.address;
+    restaurant.postalCode = req.body.postalCode || restaurant.postalCode;
+    restaurant.seatingCapacity = req.body.seatingCapacity || restaurant.seatingCapacity;
+
+    res.status(200).json(restaurant);
+});
+
+// Supprimer un restaurant
+app.delete('/restaurant/:id', (req, res) => {
+    const restaurantId = parseInt(req.params.id);
+    const index = restaurants.findIndex(restaurant => restaurant.id === restaurantId);
+
+    if (index === -1) {
+        return res.status(404).json({ message: 'Restaurant non trouvé' });
+    }
+
+    restaurants.splice(index, 1);
+    res.status(200).json({ message: 'Restaurant supprimé avec succès' });
+});
