@@ -68,3 +68,20 @@ app.delete('/restaurant/:id', (req, res) => {
     restaurants.splice(index, 1);
     res.status(200).json({ message: 'Restaurant supprimé avec succès' });
 });
+
+// Récupérer tous les restaurants
+app.get('/restaurant', (req, res) => {
+    res.status(200).json(restaurants);
+});
+
+// Récupérer un restaurant spécifique
+app.get('/restaurant/:id', (req, res) => {
+    const restaurantId = parseInt(req.params.id);
+    const restaurant = restaurants.find(restaurant => restaurant.id === restaurantId);
+
+    if (!restaurant) {
+        return res.status(404).json({ message: 'Restaurant non trouvé' });
+    }
+
+    res.status(200).json(restaurant);
+});
