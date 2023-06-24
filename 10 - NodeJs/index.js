@@ -74,7 +74,7 @@ app.get('/restaurant', (req, res) => {
     res.status(200).json(restaurants);
 });
 
-// Récupérer un restaurant spécifique
+// Récupérer un restaurant spécifique   
 app.get('/restaurant/:id', (req, res) => {
     const restaurantId = parseInt(req.params.id);
     const restaurant = restaurants.find(restaurant => restaurant.id === restaurantId);
