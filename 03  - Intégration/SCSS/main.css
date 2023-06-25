@@ -171,6 +171,60 @@ nav .wrapper_navlink button {
   font-weight: 600;
 }
 
+.container_menu {
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 0;
+  gap: 87px;
+}
+.container_menu .wrapper_menu_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.container_menu .wrapper_menu_title .wrapper_heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container_menu .wrapper_menu_title .wrapper_heading .heading_menu {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
+}
+.container_menu .wrapper_menu_title .wrapper_heading .heading_menu .title_menu h3 {
+  font-size: 52px;
+  font-weight: 600;
+  color: rgb(178, 210, 52);
+}
+.container_menu .wrapper_menu_title .wrapper_heading .heading_menu .text_menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.container_menu .wrapper_menu_title .wrapper_heading .heading_menu .text_menu .text_menu1 p {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  color: #606060;
+}
+.container_menu .wrapper_menu_title .wrapper_heading .heading_menu .text_menu .text_menu2 p {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  color: #606060;
+}
+
 .wrapper_navlink a {
   text-decoration: none;
   color: #FFFFFF;
